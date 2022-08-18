@@ -5,6 +5,8 @@ name: Build and deploy Node.js project to Azure Function App - fantasyportal
 
 on:
   push:
+    paths:
+      - 'server/**'
     branches:
       - develop
   workflow_dispatch:
