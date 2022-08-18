@@ -1,24 +1,11 @@
-import { FantasyPlayer } from '../models/player';
+import { FantasyPlayer, FantasyPlayerRepository } from '../data';
 import { Request, Response } from 'express';
+import { Query } from '../data/models';
 
 const getPlayers = async (req: Request, res: Response) : Promise<void> => {
-    var data: FantasyPlayer[] = [
-        {
-            firstName: 'SamplePlayer',
-            lastName: '1',
-            _internalId: 'abc123'
-        },
-        {
-            firstName: 'SamplePlayer',
-            lastName: '2',
-            _internalId: 'xyz123'
-        },
-        {
-            firstName: 'SamplePlayer',
-            lastName: '3',
-            _internalId: 'abc456'
-        }
-    ]
+    const query = req.query as Query<FantasyPlayer>;
+
+    var data = await FantasyPlayerRepository.get(query);
 
     res.json(data);
 }

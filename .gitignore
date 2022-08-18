@@ -9,11 +9,13 @@
 # testing
 /server/coverage
 /client/coverage
+**/*/api.data.json
 
 # production
 /server/dist
 /client/dist
 
-# misc
+# environment
 /*/.DS_Store
 /*/.env*
+.vscode
