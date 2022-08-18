@@ -1,6 +1,13 @@
-function sum (num1:number, num2:number){
-    return num1 + num2;
-}
+import express, { Router } from "express";
+import { registerRoutes } from "./routes";
 
-console.log('running server');
-console.log(sum(8,4))
+const PORT = process.env.PORT || 9001;
+
+const app = express();
+const router = Router();
+app.use(router);
+registerRoutes(router);
+
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});
