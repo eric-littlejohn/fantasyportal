@@ -1,1 +1,0 @@
-export { PlayersController } from './players';
