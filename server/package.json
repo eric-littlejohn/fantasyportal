@@ -1,0 +1,16 @@
+{
+  "name": "fantasyportal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "tsc && node server/dist/index.js" 
+  },
+  "keywords": [],
+  "author": "Eric Littlejohn",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
