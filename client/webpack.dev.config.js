@@ -1,13 +1,14 @@
-const DevConfig = require('./webpack.base.config');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.config');
 
-DevConfig.mode = 'development';
-DevConfig.devtool = 'inline-source-map';
-DevConfig.devServer = {
-  static: {
-    directory:__dirname + '/public/',
-  },
-  compress: true,
-  port: 9000,
-};
-
-module.exports = DevConfig;
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    static: {
+      directory:__dirname + '/public/',
+    },
+    compress: true,
+    port: 9000,
+  }
+});

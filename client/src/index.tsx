@@ -10,4 +10,7 @@ if (!rootElement) {
 }
 
 const root = ReactDOM.createRoot(rootElement);
-root.render(<h1>Hello, world!</h1>);
+root.render(
+    <>
+        <h1>Hello, world!</h1>
+    </>);
