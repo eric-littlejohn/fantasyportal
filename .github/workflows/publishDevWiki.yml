@@ -11,6 +11,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@master
+          - name: work around permission issue
+            run: git config --global --add safe.directory /wiki
           - name: Sync Wiki
             uses: joeizzard/action-wiki-sync@master
             with:
