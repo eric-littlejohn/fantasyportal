@@ -1,5 +1,4 @@
-name: Azure Static Web Apps CI/CD
-
+name: Wiki Sync
 on:
   push:
     branches:
@@ -7,29 +6,17 @@ on:
     paths: [
       'wiki/**'
     ]
-
 jobs:
-  sync-downstream:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        path:
-          - command
-          - database
-          - support
-
-    name: Update downstream ${{ matrix.path }} package
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: nxtlvlsoftware/git-subtree-action@1.1
-        with:
-          repo: 'nxtlvlsoftware/${{ matrix.path }}'
-          path: 'src/${{ matrix.path }}'
-          deploy_key: ${{ secrets.DOWNSTREAM_GITHUB_DEPLOY_KEY }}
-          force: true # will force push to the downstream repository
+    update-wiki:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@master
+          - name: Sync Wiki
+            uses: joeizzard/action-wiki-sync@master
+            with:
+              username: githubAction
+              access_token: ${{ secrets.GITHUB_TOKEN }}
+              wiki_folder: wiki
+              commit_username: 'githubAction'
+              commit_email: 'githubAction@users.noreply.github.com'
+              commit_message: 'action: wiki sync'
