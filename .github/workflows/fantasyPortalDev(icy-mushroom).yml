@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     name: PublishWiki
     steps:
-      -run: echo "I worked"
+      - run: echo "I worked"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
