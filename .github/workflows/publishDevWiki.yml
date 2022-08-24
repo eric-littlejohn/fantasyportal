@@ -9,18 +9,27 @@ on:
     ]
 
 jobs:
-  checkout:
+  sync-downstream:
+
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+
+    strategy:
+      fail-fast: false
+      matrix:
+        path:
+          - command
+          - database
+          - support
+
+    name: Update downstream ${{ matrix.path }} package
+
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true
-  publish_wiki:
-    runs-on: ubuntu-latest
-    name: PublishWiki
-    needs: ['checkout']
-    steps:
-      - run: | 
-          git remote add wiki https://github.com/microsoft/dtp.wiki.git
-          git subtree push --prefix wiki wiki master
+          fetch-depth: 0
+      - uses: nxtlvlsoftware/git-subtree-action@1.1
+        with:
+          repo: 'nxtlvlsoftware/${{ matrix.path }}'
+          path: 'src/${{ matrix.path }}'
+          deploy_key: ${{ secrets.DOWNSTREAM_GITHUB_DEPLOY_KEY }}
+          force: true # will force push to the downstream repository
