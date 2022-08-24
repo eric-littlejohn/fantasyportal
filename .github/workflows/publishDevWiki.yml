@@ -1,0 +1,16 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - develop
+    paths: [
+      'wiki/**'
+    ]
+
+jobs:
+  publish_wiki:
+    runs-on: ubuntu-latest
+    name: PublishWiki
+    steps:
+      - run: git subtree push --prefix wiki wiki master

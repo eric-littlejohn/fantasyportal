@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     name: PublishWiki
     steps:
-      - run: echo "I worked"
+      - run: git subtree push --prefix wiki wiki master
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
