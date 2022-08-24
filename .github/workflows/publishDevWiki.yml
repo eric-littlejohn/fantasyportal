@@ -22,5 +22,5 @@ jobs:
     needs: ['checkout']
     steps:
       - run: | 
-        git remote add wiki https://github.com/microsoft/dtp.wiki.git
-        git subtree push --prefix wiki wiki master
+          git remote add wiki https://github.com/microsoft/dtp.wiki.git
+          git subtree push --prefix wiki wiki master
