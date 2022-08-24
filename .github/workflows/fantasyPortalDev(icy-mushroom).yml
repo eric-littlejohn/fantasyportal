@@ -31,12 +31,6 @@ jobs:
           api_location: "api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-  publish_wiki:
-    runs-on: ubuntu-latest
-    name: PublishWiki
-    steps:
-      - run: git subtree push --prefix wiki wiki master
-
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest

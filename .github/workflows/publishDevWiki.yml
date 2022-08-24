@@ -9,8 +9,18 @@ on:
     ]
 
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
   publish_wiki:
     runs-on: ubuntu-latest
     name: PublishWiki
+    needs: ['checkout']
     steps:
-      - run: git subtree push --prefix wiki wiki master
+      - run: | 
+        git remote add wiki https://github.com/microsoft/dtp.wiki.git
+        git subtree push --prefix wiki wiki master
